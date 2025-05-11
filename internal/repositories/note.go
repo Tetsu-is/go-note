@@ -6,6 +6,8 @@ import (
 	"go-note/domain"
 )
 
+// INoteRepositoryの実装
+
 type NoteRepository struct {
 	DB *sql.DB
 }

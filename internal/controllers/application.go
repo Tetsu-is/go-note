@@ -19,6 +19,8 @@ func NewApplicationController(noteController *NoteController) *ApplicationContro
 
 func (ac *ApplicationController) StartServer() {
 	mux := http.NewServeMux()
+
+	// ここにルーティングを追加していく
 	mux.HandleFunc("/notes/", ac.nc.ServeHTTP)
 
 	fmt.Println("Starting server on :8080")

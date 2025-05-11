@@ -2,6 +2,8 @@ package controllers
 
 import "go-note/domain"
 
+// Repositoryインターフェースを定義するファイル
+
 type INoteRepository interface {
 	CreateNote(*domain.Note) error
 	ReadNoteAll() ([]*domain.Note, error)
