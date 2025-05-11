@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres-dev:
+    image: postgres:15
+    container_name: postgres-dev
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: devdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-dev-data:/var/lib/postgresql/data
+
+  postgres-test:
+    image: postgres:15
+    container_name: postgres-test
+    environment:
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpassword
+      POSTGRES_DB: testdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-test-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-dev-data:
+  postgres-test-data:

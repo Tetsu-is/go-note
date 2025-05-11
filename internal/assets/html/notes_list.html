@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ノート一覧</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        :root {
+            --accent: #4fd3ff;
+            --accent-dark: #1ca6d9;
+        }
+        .note-card {
+            transition: box-shadow 0.2s, transform 0.2s;
+            border-radius: 1.5rem;
+            border: none;
+            min-height: 320px;
+            font-size: 1.15rem;
+        }
+        .note-card:hover {
+            box-shadow: 0 1.5rem 3rem rgba(79,211,255,0.22), 0 0.5rem 1rem rgba(0,0,0,0.13);
+            transform: translateY(-8px) scale(1.04);
+            z-index: 2;
+            border: 2px solid var(--accent);
+        }
+        body {
+            background: #f8fafc;
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .card-text {
+            color: #555;
+            font-size: 1.1rem;
+        }
+        .navbar, .navbar-brand {
+            background: #e8f8ff !important;
+            color: var(--accent-dark) !important;
+        }
+        .navbar-brand {
+            color: var(--accent-dark) !important;
+        }
+        .btn-accent, .btn-danger {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+        }
+        .btn-accent:hover, .btn-danger:hover {
+            background: var(--accent-dark);
+            color: #fff;
+        }
+        h1, .text-accent {
+            color: var(--accent-dark) !important;
+        }
+        @media (max-width: 768px) {
+            .note-card {
+                min-height: 200px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">GoNote</a>
+            <a href="/notes/new" class="btn btn-accent fw-bold px-4 py-2 rounded-3">新規作成</a>
+        </div>
+    </nav>
+    <div class="container-fluid py-5" style="max-width: 1000px;">
+        <h1 class="mb-4 fw-bold text-accent">ノート一覧</h1>
+        {{if .}}
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {{range .}}
+            <div class="col">
+                <div class="card note-card h-100 shadow-lg rounded-4">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3">
+                            <a href="/notes/{{.ID}}" class="stretched-link text-decoration-none text-dark">{{.Title}}</a>
+                        </h5>
+                        <p class="card-text" style="white-space: pre-line;">{{.Content}}</p>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div class="alert alert-info rounded-3">ノートがありません</div>
+        {{end}}
+        <div class="mt-4 d-flex gap-2">
+            <a href="/" class="btn btn-outline-secondary rounded-3 px-4 py-2">ホームへ戻る</a>
+        </div>
+    </div>
+</body>
+</html>
